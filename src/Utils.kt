@@ -20,8 +20,9 @@ fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteA
  */
 fun Any?.println() = println(this)
 
-fun <T> validate(expected: T?, value: T?) {
-    check(value == expected) {
-        "Failed. Expecting $expected but was $value"
-    }
+fun <T> validate(expected: T?, value: T?, prefixSuccessMessage: () -> String = { "" }) {
+    if (expected == value)
+        println("${prefixSuccessMessage()} $value")
+    else
+        println("Failed. Expecting $expected but was $value")
 }

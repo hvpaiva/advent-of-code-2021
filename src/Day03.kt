@@ -1,5 +1,11 @@
 fun main() {
-    fun part1(input: List<String>): Int {
+    val day03 = Day03()
+
+    day03.solve()
+}
+
+class Day03 : DayPuzzle<Int>("03", 198, 230) {
+    override fun part1(input: List<String>): Int {
         val columns = input[0].indices
         val gammaRate = buildString {
             for (column in columns) {
@@ -11,10 +17,9 @@ fun main() {
         val epsilonRate = gammaRate.invertedBinary()
 
         return gammaRate.toInt(2) * epsilonRate.toInt(2)
-
     }
 
-    fun part2(input: List<String>): Int {
+    override fun part2(input: List<String>): Int {
         fun rating(type: RateType): String {
             val columns = input[0].indices
             var candidates = input
@@ -34,16 +39,6 @@ fun main() {
 
         return rating(RateType.OXYGEN).toInt(2) * rating(RateType.CO2).toInt(2)
     }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day03_test")
-    validate(198, part1(testInput))
-    validate(230, part2(testInput))
-
-    val input = readInput("Day03")
-
-    println("part1: ${part1(input)}")
-    println("part2: ${part2(input)}")
 }
 
 

@@ -26,3 +26,23 @@ fun <T> validate(expected: T?, value: T?, prefixSuccessMessage: () -> String = {
     else
         println("Failed. Expecting $expected but was $value")
 }
+
+fun puzzleRunner(
+    day: String,
+    part1: (List<String>) -> Any?,
+    part1Expected: Any?,
+    part2: (List<String>) -> Any?,
+    part2Expected: Any?,
+    enablePart2: Boolean = false
+) {
+    val testInput = readInput("${day}_test")
+    validate(part1Expected, part1(testInput)) { "Test part1:" }
+    if (enablePart2)
+        validate(part2Expected, part2(testInput)) { "Test part2:" }
+
+    val input = readInput(day)
+
+    println("part1: ${part1(input)}")
+    if (enablePart2)
+        println("part2: ${part2(input)}")
+}

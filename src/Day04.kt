@@ -1,27 +1,24 @@
 fun main() {
-    fun part1(input: List<String>): Int {
+    val day04 = Day04()
+
+    day04.solve()
+}
+
+class Day04 : DayPuzzle<Int>("04", 4512, 1924) {
+
+    override fun part1(input: List<String>): Int {
         val draws = draws(input)
         val bingoBoards = bingoBoard(input)
 
         return getBingoResults(draws, bingoBoards).first()
     }
 
-    fun part2(input: List<String>): Int {
+    override fun part2(input: List<String>): Int {
         val draws = draws(input)
         val bingoBoards = bingoBoard(input)
 
         return getBingoResults(draws, bingoBoards).last()
     }
-
-    // test if implementation meets criteria from the description, like:
-    val testInput = readInput("Day04_test")
-    validate(4512, part1(testInput)) { "Test part1:" }
-    validate(1924, part2(testInput)) { "Test part2:" }
-
-    val input = readInput("Day04")
-
-    println("part1: ${part1(input)}")
-    println("part2: ${part2(input)}")
 }
 
 fun draws(input: List<String>): List<Int> {
